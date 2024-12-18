@@ -1,0 +1,98 @@
+.anime-display-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: fit-content;
+}
+
+.animeTitle {
+  font-size: 3rem;
+  color: white;
+  text-align: center;
+}
+
+.animeTitleJap {
+  font-size: 1rem;
+  color: var(--main-accent);
+  margin-bottom: 1rem;
+}
+
+.animeCover {
+  margin-bottom: 2rem;
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.6);
+}
+
+.animeSectionTitle {
+  color: var(--main-accent);
+  align-self: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.synopsis {
+  color: var(--main-text-color);
+  text-align: justify;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+.quickInfo p {
+  line-height: 1.2;
+}
+
+p {
+  color: var(--main-text-color);
+  margin-bottom: 0.5rem;
+}
+
+.animeInfo {
+  margin-bottom: 2rem;
+}
+
+.scoreContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.score {
+  font-weight: bold;
+  font-size: 2rem;
+  color: var(--main-accent);
+  margin-bottom: 0;
+}
+
+.scoredBy {
+  font-size: 0.8rem;
+  color: white;
+}
+
+.genres {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background-color: var(--main-accent);
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.6);
+  font-weight: bold;
+}
+
+.animeDisplayButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}

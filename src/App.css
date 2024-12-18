@@ -1,0 +1,13 @@
+main {
+  height: calc(100vh - 92px);
+  width: 100vw;
+  min-height: 100vh;
+  height: fit-content;
+  margin-top: 92px;
+  padding: 1rem;
+  background-color: var(--main-bg);
+}
+
+.fit-content {
+  height: fit-content !important;
+}

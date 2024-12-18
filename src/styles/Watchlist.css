@@ -1,0 +1,57 @@
+.watchlist {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.watchlistTitle {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.clear-btn {
+  margin-bottom: 2rem;
+}
+
+.watchlistUl {
+  list-style-type: none;
+  width: 100%;
+}
+
+.watchlistUl li {
+  display: flex;
+  background-color: var(--sec-bg);
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 4px 0px rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--main-accent);
+  width: 100%;
+}
+
+.watchlistUl li img {
+  width: 25%;
+}
+
+.wlControls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 75%;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty {
+  color: white;
+  font-size: 1.5rem;
+  text-align: center;
+}

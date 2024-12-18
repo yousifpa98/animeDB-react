@@ -1,0 +1,29 @@
+.topListCard {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--sec-bg);
+  border-radius: 1rem;
+  box-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.6);
+}
+
+.topListCard img {
+  width: 30%;
+  height: auto;
+}
+
+.listInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  width: 65%;
+}
+
+.topListCardLink {
+  color: var(--main-accent);
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}

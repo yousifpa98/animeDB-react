@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: "Rubik", Arial, Helvetica, sans-serif;
+
+  /* Colors */
+  --sec-bg: #1d232a;
+  --main-bg: #0e1115;
+  --main-accent: rgba(26, 188, 156, 1);
+  --main-text-color: rgb(173, 173, 173);
+}

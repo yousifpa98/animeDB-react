@@ -1,6 +1,9 @@
 import React from "react";
 import TopListCard from "./subcomps/TopListCard";
-import "../styles/TopLists.css"
+import "../styles/TopLists.css";
+import Top100List from "./subcomps/Top100List";
+import TopAnimes from "./TopAnimes";
+import TopMangas from "./TopMangas";
 
 const TopLists = () => {
   const lists = [
@@ -15,6 +18,8 @@ const TopLists = () => {
       {lists.map((list) => (
         <TopListCard list={list} key={list.id} />
       ))}
+     {/*  <TopAnimes /> */}
+     {/*  <TopMangas /> */}
     </div>
   );
 };

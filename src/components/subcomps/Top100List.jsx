@@ -1,32 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../styles/Top100List.css";
 
-const TopChars = () => {
+const Top100List = ({ type }) => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [filter, setFilter] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
   useEffect(() => {
+    if (!type) return;
+
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-    const fetchCharacters = async () => {
+    const fetchAllPages = async () => {
       setLoading(true);
       setError(null);
       const aggregatedData = [];
       try {
         for (let page = 1; page <= 4; page++) {
           const response = await fetch(
-            `https://api.jikan.moe/v4/top/characters?page=${page}&limit=25`
+            `https://api.jikan.moe/v4/top/${type}?page=${page}&limit=25`
           );
           const result = await response.json();
           aggregatedData.push(...result.data);
-          await delay(1000);
+          await delay(1000); // Delay between requests
         }
         setData(aggregatedData);
         setFilteredData(aggregatedData);
@@ -37,19 +39,20 @@ const TopChars = () => {
       }
     };
 
-    fetchCharacters();
-  }, []);
+    fetchAllPages();
+  }, [type]);
 
-  const handleSearchChange = (e) => {
+  const handleFilterChange = (e) => {
     const value = e.target.value.toLowerCase();
-    setSearchTerm(value);
+    setFilter(value);
     const filtered = data.filter((item) =>
-      item.name.toLowerCase().includes(value)
+      item.title.toLowerCase().includes(value)
     );
     setFilteredData(filtered);
-    setCurrentPage(1);
+    setCurrentPage(1); // Reset to the first page when filtering
   };
 
+  // Calculate items to display for the current page
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentPageData = filteredData.slice(
     startIndex,
@@ -58,52 +61,45 @@ const TopChars = () => {
 
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
+
   return (
-    <div className="topListContainer">
-      <h2 className="topListTitle">Top Characters</h2>
+    <div>
+      <h1>Top 100 {type.charAt(0).toUpperCase() + type.slice(1)}</h1>
       <input
         type="text"
-        placeholder="Search for characters..."
-        value={searchTerm}
-        onChange={handleSearchChange}
+        placeholder="Filter results..."
+        value={filter}
+        onChange={handleFilterChange}
         style={{
           marginBottom: "20px",
           padding: "10px",
           width: "100%",
         }}
       />
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <ul className="topListUl">
-          {currentPageData.map((item) => {
-            const originalIndex = data.findIndex(
-              (d) => d.mal_id === item.mal_id
-            );
-            return (
-              <li className="topListItem" key={item.mal_id}>
-                {item.images?.jpg?.image_url && (
-                  <img
-                    src={item.images.jpg.image_url}
-                    alt={item.name}
-                    className="topListImg"
-                  />
-                )}
-                <div className="topListItemContent">
-                  <h3 className="topListItemName">
-                    {originalIndex + 1}. {item.name}
-                  </h3>
-                  <p>Favorites: {item.favorites || "N/A"}</p>
-                  <Link to={`/character/${item.mal_id}`}>
-                    <button className="btn">View</button>
-                  </Link>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      )}
+      <ul>
+        {currentPageData.map((item, index) => (
+          <li key={item.mal_id}>
+            <h3>
+              {startIndex + index + 1}. {item.title}
+            </h3>
+            {item.images?.jpg?.image_url && (
+              <img
+                src={item.images.jpg.image_url}
+                alt={item.title}
+                style={{ width: "150px", height: "200px" }}
+              />
+            )}
+            <p>Score: {item.score || "N/A"}</p>
+            <Link to={`/search/${encodeURIComponent(item.title)}`}>
+              <button className="btn">View</button>
+            </Link>
+          </li>
+        ))}
+      </ul>
 
+      {/* Pagination Controls */}
       <div style={{ marginTop: "20px" }}>
         <button
           className="btn"
@@ -112,13 +108,15 @@ const TopChars = () => {
         >
           Previous
         </button>
-        <span style={{ margin: "0 10px", color: "white" }}>
+        <span style={{ margin: "0 10px" }}>
           Page {currentPage} of {totalPages}
         </span>
         <button
           className="btn"
           onClick={() =>
-            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            setCurrentPage((prev) =>
+              Math.min(prev + 1, totalPages)
+            )
           }
           disabled={currentPage === totalPages}
         >
@@ -129,4 +127,4 @@ const TopChars = () => {
   );
 };
 
-export default TopChars;
+export default Top100List;

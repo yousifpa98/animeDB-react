@@ -10,6 +10,7 @@ import TopAnimes from "./components/TopAnimes";
 import TopMangas from "./components/TopMangas";
 import TopChars from "./components/TopChars";
 import TopPeople from "./components/TopPeople";
+import E404 from "./components/E404";
 
 const App = () => {
   const isSearchActive = useMatch("/search/:animeName");
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/top-mangas" element={<TopMangas />} />
           <Route path="/top-characters" element={<TopChars />} />
           <Route path="/top-people" element={<TopPeople />} />
+          <Route path="*" element={<E404 />} />
         </Routes>
       </main>
     </Layout>

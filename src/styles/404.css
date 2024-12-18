@@ -1,0 +1,30 @@
+.e404 {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.e404img {
+  width: 100%;
+}
+
+.notFoundText {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.notFoundText h2 {
+  font-size: 4rem;
+  color: var(--main-accent);
+}
+
+.notFoundText p {
+  text-align: center;
+  margin-bottom: 2rem;
+}

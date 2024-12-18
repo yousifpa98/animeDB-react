@@ -36,6 +36,7 @@ input {
   padding: 0.5rem 1rem;
   color: var(--main-accent);
   cursor: pointer;
+  border-radius: 5px ;
 }
 
 .suggestions {

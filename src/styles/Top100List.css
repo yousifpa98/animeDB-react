@@ -1,0 +1,75 @@
+.topListContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.topListTitle {
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.btn.active {
+  background-color: var(--main-accent);
+  color: white;
+  font-weight: bold;
+}
+
+.topListFilters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.topListUl {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  list-style-type: none;
+  width: 100%;
+  border: 1px solid var(--main-accent);
+}
+
+.topListItem {
+  background-color: var(--sec-bg);
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+
+.topListImg {
+  width: 30%;
+  height: auto;
+  max-height: 140px;
+  box-shadow: 0 0 4px 0 rgba(255, 255, 255, 0.6);
+}
+.topListItemContent {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.topListItemName {
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.topListInfoList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin-bottom: 1rem;
+}
+
+.topListInfoList p {
+  margin: 0;
+}

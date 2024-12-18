@@ -100,7 +100,7 @@ const AnimeDisplayPage = () => {
 
           <div className="animeDisplayButtons">
             <button className="btn heart-btn" onClick={addToWatchlist}>
-              {isHearted ? "❤️ Added to Watchlist" : "🤍 Heart"}
+              {isHearted ? "❤️ Added to Watchlist" : "🤍"}
             </button>
             <button className="btn" onClick={() => navigate("/")}>
               Back to Home

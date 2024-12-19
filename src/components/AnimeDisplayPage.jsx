@@ -86,9 +86,16 @@ const AnimeDisplayPage = () => {
             src={animeData.images.jpg.large_image_url}
             alt={animeData.title}
           />
-          <a href={animeData.trailer.url} target="blank">
-            <YouTube className="youtubeIcon" />
-          </a>
+          {animeData.trailer?.url && (
+            <a
+              href={animeData.trailer.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <YouTube className="youtubeIcon" />
+            </a>
+          )}
+
           <div className="quickInfo">
             <p className="episodes">
               <span className="animeSectionTitle">

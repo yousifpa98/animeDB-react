@@ -19,7 +19,7 @@
 }
 
 .animeCover {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   width: 200px;
   height: auto;
   border-radius: 10px;
@@ -121,4 +121,12 @@ p {
 .streamingProvider:hover {
   background-color: var(--main-accent);
   cursor: pointer;
+}
+
+.youtubeIcon {
+  fill: var(--main-accent);
+  width: 32px;
+  height: auto;
+  cursor: pointer;
+  margin-bottom: 2rem;
 }

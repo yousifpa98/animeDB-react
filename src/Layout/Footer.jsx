@@ -17,13 +17,12 @@ const Footer = () => {
       </div>
       <ul className="footer-links">
         {items.map((item) => (
-          <li>
+          <li key={item.name}>
             <NavLink
               to={item.dest}
               className={({ isActive }) =>
                 `nav-link ${isActive ? "active" : ""}`
               }
-              key={item.id}
             >
               {item.name}
             </NavLink>

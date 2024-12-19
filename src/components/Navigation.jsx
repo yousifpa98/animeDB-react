@@ -3,9 +3,9 @@ import { NavLink, Link } from "react-router-dom";
 
 const Navigation = () => {
   const items = [
-    { name: "Home", dest: "/", id: 1 },
-    { name: "Top Lists", dest: "/top-lists", id: 2 },
-    { name: "Watchlist", dest: "/watchlist", id: 3 },
+    { name: "Home", dest: "/", id: "eufpag23" },
+    { name: "Top Lists", dest: "/top-lists", id: "ufisdpo32" },
+    { name: "Watchlist", dest: "/watchlist", id: "3iorjwtf2" },
   ];
 
   return (
@@ -18,13 +18,13 @@ const Navigation = () => {
         </div>
         <ul className="nav-links">
           {items.map((item) => (
-            <li>
+            <li key={item.id}>
               <NavLink
                 to={item.dest}
                 className={({ isActive }) =>
                   `nav-link ${isActive ? "active" : ""}`
                 }
-                key={item.id}
+                
               >
                 {item.name}
               </NavLink>

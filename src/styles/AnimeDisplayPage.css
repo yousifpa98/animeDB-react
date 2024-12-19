@@ -96,3 +96,29 @@ p {
   gap: 1rem;
   margin-bottom: 4rem;
 }
+
+.streamingProviders {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  list-style-type: none;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.streamingProvider {
+  background-color: var(--sec-bg);
+  padding: 0.25rem 1rem;
+  border-radius: 1rem;
+  color: var(--main-text-color);
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.streamingProvider:hover {
+  background-color: var(--main-accent);
+  cursor: pointer;
+}

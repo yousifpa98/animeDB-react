@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/AnimeDisplayPage.css";
+import YouTube from "../assets/icons/youtube.svg?react";
 
 const AnimeDisplayPage = () => {
   const { animeName } = useParams();
@@ -14,18 +15,32 @@ const AnimeDisplayPage = () => {
   useEffect(() => {
     const fetchAnime = async () => {
       try {
-        const response = await fetch(
+        const searchResponse = await fetch(
           `https://api.jikan.moe/v4/anime?q=${animeName}&limit=1`
         );
-        if (!response.ok) throw new Error("Failed to fetch anime data");
+        if (!searchResponse.ok)
+          throw new Error("Failed to fetch anime search data");
 
-        const data = await response.json();
-        setAnimeData(data.data[0]);
+        const searchData = await searchResponse.json();
+        if (!searchData.data || searchData.data.length === 0) {
+          throw new Error("No anime found with the given name");
+        }
+
+        const animeId = searchData.data[0].mal_id;
+
+        const fullResponse = await fetch(
+          `https://api.jikan.moe/v4/anime/${animeId}/full`
+        );
+        if (!fullResponse.ok)
+          throw new Error("Failed to fetch full anime data");
+
+        const fullData = await fullResponse.json();
+        setAnimeData(fullData.data);
 
         // Check if the anime is already in the watchlist
         const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
         setIsHearted(
-          watchlist.some((anime) => anime.id === data.data[0].mal_id)
+          watchlist.some((anime) => anime.id === fullData.data.mal_id)
         );
       } catch (err) {
         setError(err.message);
@@ -61,7 +76,7 @@ const AnimeDisplayPage = () => {
   return (
     <div className="anime-display-page">
       {loading && <p>Loading...</p>}
-      {/* {error && <p className="error">{error}</p>} */}
+      {error && <p className="error">{error}</p>}
       {animeData && (
         <>
           <h2 className="animeTitle">{animeData.title}</h2>
@@ -71,6 +86,9 @@ const AnimeDisplayPage = () => {
             src={animeData.images.jpg.large_image_url}
             alt={animeData.title}
           />
+          <a href={animeData.trailer.url} target="blank">
+            <YouTube className="youtubeIcon" />
+          </a>
           <div className="quickInfo">
             <p className="episodes">
               <span className="animeSectionTitle">
@@ -78,18 +96,34 @@ const AnimeDisplayPage = () => {
               </span>{" "}
               {animeData.episodes || "N/A"} / {animeData.duration}
             </p>
+            <ul className="streamingProviders">
+              {animeData.streaming.map((service) => (
+                <li key={service.name}>
+                  <a
+                    className="streamingProvider"
+                    href={service.url}
+                    target="blank"
+                  >
+                    {service.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
             <h4 className="animeSectionTitle">Info:</h4>
             <p className="animeInfo">
               {animeData.background ||
                 "Unfortunately there's no specific information for this Anime yet."}
             </p>
+
             <div className="scoreContainer">
               <p className="score">{animeData.score || "N/A"}/10 </p>
               <p className="scoredBy">voted by {animeData.scored_by}</p>
             </div>
             <div className="genres">
               {animeData.genres.map((genre) => (
-                <span className="tag">{genre.name}</span>
+                <span key={genre.name} className="tag">
+                  {genre.name}
+                </span>
               ))}
             </div>
           </div>

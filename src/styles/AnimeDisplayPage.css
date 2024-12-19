@@ -10,6 +10,7 @@
   font-size: 3rem;
   color: white;
   text-align: center;
+ 
 }
 
 .animeTitleJap {
@@ -19,7 +20,7 @@
 }
 
 .animeCover {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   width: 200px;
   height: auto;
   border-radius: 10px;
@@ -128,5 +129,5 @@ p {
   width: 32px;
   height: auto;
   cursor: pointer;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 }

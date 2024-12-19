@@ -79,22 +79,24 @@ const AnimeDisplayPage = () => {
       {error && <p className="error">{error}</p>}
       {animeData && (
         <>
-          <h2 className="animeTitle">{animeData.title}</h2>
+          <h2 className="animeTitle">
+            {animeData.title}{" "}
+            {animeData.trailer?.url && (
+              <a
+                href={animeData.trailer.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <YouTube className="youtubeIcon" />
+              </a>
+            )}
+          </h2>
           <h3 className="animeTitleJap">{animeData.title_japanese || "N/A"}</h3>
           <img
             className="animeCover"
             src={animeData.images.jpg.large_image_url}
             alt={animeData.title}
           />
-          {animeData.trailer?.url && (
-            <a
-              href={animeData.trailer.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <YouTube className="youtubeIcon" />
-            </a>
-          )}
 
           <div className="quickInfo">
             <p className="episodes">
